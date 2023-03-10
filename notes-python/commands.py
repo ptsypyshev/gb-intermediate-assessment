@@ -183,8 +183,12 @@ class SearchNoteByDate(Command):
         flag_find = False
         start_date_str = input(msg.INPUT_SEARCH_START_DATE_STR_MSG)
         end_date_str = input(msg.INPUT_SEARCH_END_DATE_STR_MSG)
-        start_date = datetime.strptime(start_date_str, "%Y-%m-%d")
-        end_date = datetime.strptime(end_date_str, "%Y-%m-%d")
+        try:
+            start_date = datetime.strptime(start_date_str, "%Y-%m-%d")
+            end_date = datetime.strptime(end_date_str, "%Y-%m-%d")
+        except ValueError:
+            self._view.print_msg(msg.INVALID_DATE_STR_MSG + "\n")
+            return        
 
         for note in self._notes:
             if start_date < note.get_modified() < end_date:
