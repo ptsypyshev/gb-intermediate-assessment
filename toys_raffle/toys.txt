@@ -1,0 +1,3 @@
+1 teddybear 10 20
+2 car 10 30
+3 phone 10 50
